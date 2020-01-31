@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src='./js/client.js'></script>
     <title>Document</title>
@@ -17,8 +16,8 @@
         </table>
         <button id="bus_time">시간 선택</button> 
             <table border="1" width="650"> 
-                <% for(let i=0; i < result.length;i++){ %>
-                    <tr><td> <%=result[i]['b_time']%> </td></tr>
+                <% for(let i=0; i < dataArray[1].length;i++){ %>
+                    <tr><td> <%=dataArray[1][i].b_time%> </td></tr>
                     <% } %>           
          
             
@@ -42,8 +41,8 @@
      
     </table>
     <table border="1" width="650"> 
-        <% for(let i=0; i < result.length;i++){ %>
-            <tr><td> <%=result[i]['b_position]%> </td></tr>
+        <% for(let i=0; i < dataArray[0].length;i++){ %>
+            <tr><td> <%=dataArray[0][i].b_po%> </td></tr>
             <% } %>          
     <button id="bus_position">예매</button> 
     <br>

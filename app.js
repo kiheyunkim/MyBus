@@ -12,15 +12,18 @@ var con = mysql.createConnection({
     password: "mysql",
     port:"3307",
     database: "nodejs"
-  });
+});
 
+app.use(express.static(path.join(__dirname,'public')));
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 
 
 app.get('/login/google',(req,res)=>{
     
     con.connect((err)=>{ 
-        if (err) throw err;
-        console.log("Connected!");
+        // if (err) throw err;
+        // console.log("Connected!");
 
         const b_time='03시';
         var sql = `select * from bus_time where b_time='${b_time}'`; //*는 모든 field를 다 가져왔다는 뜻
@@ -28,7 +31,7 @@ app.get('/login/google',(req,res)=>{
             if (err){
                 console.log('login err');
                 console.log(err);
-                res.json({message:"선택 에러"})
+                res.json({message:"선택 에러"});
             }else{
                 console.log(result);
                 if(result[0]){
@@ -44,22 +47,20 @@ app.get('/login/google',(req,res)=>{
                     // req.sessionm.name=name;
                     // con.end();
                     // res.json({message:`${name}님 로그인 성공`})
-                }else{
-                    console.log('no have bus seat');
-                    res.json({message:"빈좌석이 없습니다"})
-                }
-            } 
-            con.end();  
-        });
-    }); //end query
+                }else{  }
+            }
+        }); //end query
+        
+    });
 });
 
-app.get('/test1',(req,res)=>{
-    con.connect((err)=>{ 
-        if (err) throw err;
-        console.log("Connected!");
 
-        var sql = `select * from bus_time`; //*는 모든 field를 다 가져왔다는 뜻
+app.get('/test1',(req,res)=>{
+    // con.connect((err)=>{ 
+        // if (err) throw err;
+        // console.log("Connected!");
+
+        const sql = `select * from bus_position`; //*는 모든 field를 다 가져왔다는 뜻
         con.query(sql, function (err, result) {
             if (err){
                 console.log('login err');
@@ -67,18 +68,30 @@ app.get('/test1',(req,res)=>{
                 res.json({message:"선택 에러"})
             }else{
                 console.log(result);
-                res.render('test1',{result:result});
+                const sql = `select * from bus_time`; //*는 모든 field를 다 가져왔다는 뜻
+                con.query(sql, function (err, result2) {
+                    if (err){
+                        console.log('login err');
+                        console.log(err);
+                        res.json({message:"선택 에러"})
+                    }else{
+                        let dataArray = [];
+                        dataArray.push(result);
+                        dataArray.push(result2);
+                        console.log(dataArray);
+                        res.render('test1',{dataArray:dataArray});
+                    } 
+                    // con.end();  
+                });
+    // }); //end query
             } 
-            con.end();  
+            // con.end();  
         });
-    }); //end query
+    // }); //end query
     
     
 });
 
-app.use(express.static(path.join(__dirname,'public')));
-app.use(express.json());
-app.use(express.urlencoded({extended:false}));
 
 app.listen(3000,()=>{
     console.log("server ready...");
