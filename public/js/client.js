@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    $('#time').click(function(){
-        alert();
+    $('#bus_time').click(function(){
+        alert(' am9시  am12시 pm3시 ');
     });
 
-    $('#position').click(function(){
-        alert();
-
+    $('#bus_position').click(function(){
+        alert('앞 중간 뒤');
+        
     });
 });
