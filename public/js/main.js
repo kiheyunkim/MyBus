@@ -4,20 +4,25 @@ $(document).ready(function(){
     }
     setTimeout(function(){
       $('.slider__wrap').addClass('slider__wrap--hacked');
-    }, 1000);
+    }, 2000);
     
     function goToSlide(number){
         $('.slider__slide').removeClass('slider__slide--active');
         $('.slider__slide[data-slide='+number+']').addClass('slider__slide--active');
     }
     
-    $('#go-to-next').on('click', function(){
+    let click = ()=>{
         var currentSlide = Number($('.slider__slide--active').data('slide'));
         var totalSlides = $('.slider__slide').length;
         currentSlide++
+        console.log(currentSlide);
         if (currentSlide > totalSlides){
             currentSlide = 1;
         }
         goToSlide(currentSlide);
-    })
+    };
+    goToSlide(1);
+    $('#go-to-next1').click(click);
+    $('#go-to-next2').click(click);
+    $('#go-to-next3').click(click);
 })

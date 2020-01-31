@@ -179,13 +179,13 @@ body {
    }
 }
 .slider__slide:nth-child(1) .slider__back  {
-    background-image: url(https://unsplash.it/1600/800/?image=929);
+    background-image: url('../img/start.jpg');
 }
 .slider__slide:nth-child(2) .slider__back {
-    background-image: url(https://unsplash.it/1600/800/?image=929);
+    background-image: url('../img/inbus.jpg');
 }
 .slider__slide:nth-child(3) .slider__back {
-    background-image: url(https://unsplash.it/1600/800/?image=927);
+    background-image: url('../img/bus.gif');
 }
 .sig {
     position: fixed;
@@ -235,50 +235,14 @@ body {
 }
 .prev_buttn{
     float:left;
+    text-align: center;
 }
 
 .next_button{
     float: right;
+    text-align: center;
+};
+
+#go-to-next1{
+    margin: 0 auto ;
 }
-
-
-button{
-    background:#1AAB8A;
-    color:#fff;
-    border:none;
-    position:relative;
-    height:60px;
-    font-size:1.6em;
-    padding:0 2em;
-    cursor:pointer;
-    transition:800ms ease all;
-    outline:none;
-};
-
-button:hover{
-    background:#fff;
-    color:#1AAB8A;
-};
-
-button:before,button:after{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    height:2px;
-    width:0;
-    background: #1AAB8A;
-    transition:400ms ease all;
-};
-
-button:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-};
-
-button:hover:before,button:hover:after{
-    width:100%;
-    transition:800ms ease all;
-};  
