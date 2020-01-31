@@ -20,9 +20,9 @@ app.get('/login/google',(req,res)=>{
     con.connect((err)=>{ 
         if (err) throw err;
         console.log("Connected!");
-        //login 처리하는 곳
-        const b_time=req.body.b_time;
-        var sql = `select * from members where b_time='${b_time}'`; //*는 모든 field를 다 가져왔다는 뜻
+
+        const b_time=1;
+        var sql = `select * from bus_time where b_time='${b_time}'`; //*는 모든 field를 다 가져왔다는 뜻
         con.query(sql, function (err, result) {
             if (err){
                 console.log('login err');
