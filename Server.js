@@ -31,6 +31,7 @@ passport.Addpassport(app);
 app.use('/login',LoginRouter);    //for login
 app.use('/common',CommonRouter);  //for contents
 
+
 app.listen('3000',()=>console.log('Server Start'));
 app.on('exit',()=>{
   console.log('bye');

@@ -1,7 +1,36 @@
+/* 공통------------------------------------------------------------------------------------ */
 body {
     background: #aaa;
     font-family: 'Open Sans', sans-serif;
 }
+*{/* 모든 마크업 태그 */
+  margin: 0; /* 바깥 여백 */
+  line-height: 100%;/* 줄 간격 */
+  padding: 0;/* 안쪽 여백 */
+}
+ul{/*마크업 테그(css버전)*/
+  list-style: none;/* 점표시 삭제 */
+  margin: 0 auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+p{
+  margin: 0 auto;
+}
+a{
+  text-decoration: none; /*  링크 버튼 밑에 밑줄 삭제 */
+  color: #000;
+}
+b{
+  font-weight: normal;
+}
+h2{
+  font-size: 100%;
+  font-weight: normal;
+  line-height: 100%;
+  text-align: center;
+}
+/* 슬라이드 관련------------------------------------------------------------------------------------ */
 .slider {
     position: relative;
     height: 100vh;
@@ -200,33 +229,181 @@ body {
     z-index: 9999;
 }
 
+
+/* 페이지 관련------------------------------------------------------------------------------------ */
+/* 페이지 공통-------------------------------------- */
+.left, .right{
+    height: 96%;
+    overflow: hidden;
+}
+h2{
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 15px 15px 0px 0;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+#daylist, #timelist, #seatlist, #seatsum{
+    background-color: #fff;
+    width: 90%;
+    height: 90%;
+}
+#daylist li, #timelist li, #selectlist li{
+    width: 100%;
+    height: 72px;
+    border-bottom: 1px solid #e1e1e1;
+    cursor: pointer;
+}
+#daylist li:nth-last-child(1), #timelist li:nth-last-child(1){
+  border-bottom: none;
+}
+#daylist li p, #timelist li p, #selectlist li p{
+  font-size: 20px;
+  padding: 26px;
+}
+
+/* page1 왼쪽 페이지-------------------------------------- */
 #select_form{
     /*background-color: rgb(0, 0, 0); */
     width: 50%; 
-    height: 90%;  
+    height: 90%;
+    text-align: center;
     float: left;
 }
-
+.page1.left h2{
+  background-color: #458eff;
+  color: #fff;
+}
+#daylist li p{
+  color: #458eff;
+}
+.dayselect{
+  background-color: #cadcf9;
+}
+.dayselect p{
+  color: #3d6cc6 !important;
+  font-weight: bold;
+}
+/* page1 오른쪽 페이지-------------------------------------- */
 #info_form{
     /*background-color: rgb(255, 255, 255);*/
      width: 50%;
     height: 90%;
+    text-align: center;
     float: right;
 }
+.page1.right h2{
+  background-color: #8b6ddd;
+  color: #fff;  
+}
+#timelist li p{
+  color: #6546b9;  
+}
+.timeselect{
+  background-color: #d8caff;
+}
+.timeselect p{
+  color: #4524bd !important;
+  font-weight: bold;
+}
+/* page2 왼쪽 페이지-------------------------------------- */
+.page2.left h2{
+  background-color: #df3b5a;
+  color: #fff;
+}
+.page2 #seatlist{
+    margin: 0 auto;
+    display: table;
+}
+#seatlist tbody{
+    display: table;
+    width: 60%;
+    height: 80%;
+    margin: 0 auto;
+    margin-top: 3%;
+}
+#seatlist tbody tr{
+  border: none;
+}
+#seatlist tbody tr th{
+  border-top: 2px solid #fff;
+}
+#seatlist tbody tr td{   
+  cursor: pointer;
+    border: 2px solid #e6e6e6;
+    font-size: 14px;
+    color: #777;
+    box-sizing: border-box;
+    position: relative;
+}
+.seatselect{
+    color: #8c2828 !important;
+    font-weight: bold;
+}
+.seatselect::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 75, 75, 0.2);
+    border: 2px solid #df3b5a !important;
+}
+/* page2 오른쪽 페이지-------------------------------------- */
+.page2.right h2{
+  background-color: #df613b;
+  color: #fff;
+}
+#seatsum{
+    margin: 0 auto;
+}
+#selectlist{
+    height: 80%;
+    border-bottom: 1px solid #e6e6e6;
+}
+#selectlist li{
+    cursor: auto;
+}
+#selectlist li p{
+    text-align: left;
+    padding: 26px 46px;
+}
+#price{
+    height: 20%;
+    padding: 26px 46px;
+    font-weight: bold;
+    font-size: 20px;
+}
+#price p{
+    float: left;
+    color: #777;
+}
+#price span{
+    float: left;
+    width: 60%;
+    height: 80%;
+    margin-left: 10%;
+    font-weight: bold;
+}
+#price i{
+    float: right;
+    font-style: initial; 
+}
 
+/* 하단 버튼 관련------------------------------------------------------------------------------------ */
 #bttnArea{
     width: 100%;
     height: 10%;
-    float:right;
+    float: right;
 }
-
 #bttnArea .prev_buttn{
     height :100%;
     width: 50%;
     float: left;
     /*background-color: rgb(255, 255, 225)*/
 }
-
 #bttnArea .next_button{
     height :100%; 
     width: 50%; 
@@ -237,12 +414,10 @@ body {
     float:left;
     text-align: center;
 }
-
 .next_button{
     float: right;
     text-align: center;
 };
-
 .next_button button{
     text-align: center;
     top:50%;

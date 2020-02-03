@@ -27,7 +27,6 @@ let Addpassport = (app)=>{
     });
 
     passport.deserializeUser((user,done)=>{//세션에 저장된 값을 가져올 때
-        console.log('called');
         done(null,user);
     });
 }
