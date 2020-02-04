@@ -21,7 +21,11 @@ CREATE TABLE prePurchase(
 
 INSERT INTO BusList VALUES ( DATE('2020-02-20'), 1001, 0);
 
+<<<<<<< HEAD
+INSERT INTO Reservation (email, busSeat, busNumber, bus_date) VALUES ( '123@123.com', 1, 1001, DATE('20-02-20'));
+=======
 INSERT INTO Reservation (email, busSeat, busNumber) VALUES ( '123@123.com', 1, 1001);
+>>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
 
 SELECT * FROM Reservation WHERE email = '123@123.com';
 
