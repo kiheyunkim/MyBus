@@ -7,9 +7,15 @@ let Addpassport = (app)=>{
     app.use(passport.session());
 
     passport.use(new googleStrategy({
+<<<<<<< HEAD
+        clientID: '586489203795-b8f2173hs2ke30dk3tqtqsra3hbneuln.apps.googleusercontent.com',
+        clientSecret: '3et5-vIQHIvG5h20T2vxFSvQ',
+        callbackURL: 'http://ec2-15-164-166-198.ap-northeast-2.compute.amazonaws.com:3000/login/callback'
+=======
         clientID: '',
         clientSecret: '',
         callbackURL: 'http://127.0.0.1:3000/login/callback'
+>>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
     },
     (accessToken, refreshToken, profile, done)=> {      //로그인 되는 순간에 불러온다.
         // asynchronous verification, for effect...
