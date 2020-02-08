@@ -1,0 +1,5 @@
+{
+    "CLIENT_ID":"586489203795-b8f2173hs2ke30dk3tqtqsra3hbneuln.apps.googleusercontent.com", 
+    "CLIENT_SECRET":"3et5-vIQHIvG5h20T2vxFSvQ",
+    "CALLBACK_URL" : "http://127.0.0.1:3000/login/callback"
+}

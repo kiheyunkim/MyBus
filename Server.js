@@ -10,7 +10,7 @@ const app = express();
 
 //Set Json Use
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:true}));
 
 //Set CSP(Contents Security Policy)
 //csp.SetCSP(app);

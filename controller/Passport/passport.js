@@ -1,5 +1,7 @@
+const fs = require('fs');
 const passport = require('passport');
 const googleStrategy = require('passport-google-oauth20').Strategy;
+const passportInfo = JSON.parse(fs.readFileSync(__dirname+ '/../../AuthInfo/passportInfo.json',{encoding:'UTF-8'}));
 //const app = require('express')();
 
 let Addpassport = (app)=>{
@@ -7,9 +9,9 @@ let Addpassport = (app)=>{
     app.use(passport.session());
 
     passport.use(new googleStrategy({
-        clientID: '',
-        clientSecret: '',
-        callbackURL: 'http://127.0.0.1:3000/login/callback'
+        clientID: passportInfo.CLIENT_ID,
+        clientSecret: passportInfo.CLIENT_SECRET,
+        callbackURL: passportInfo.CALLBACK_URL
     },
     (accessToken, refreshToken, profile, done)=> {      //로그인 되는 순간에 불러온다.
         // asynchronous verification, for effect...

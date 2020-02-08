@@ -1,30 +1,65 @@
 const mysql = require('mysql');
 const fs = require('fs');
-const connectionInfo = JSON.parse(fs.readFileSync(__dirname+ '/connectionInfo.json',{encoding:'UTF-8'}));
+const connectionInfo = JSON.parse(fs.readFileSync(__dirname+ '/../../AuthInfo/connectionInfo.json',{encoding:'UTF-8'}));
 
 const connection = mysql.createConnection({
-    host     : 'localhost',
+    host     : connectionInfo.host,
+    port     : connectionInfo.port,
     user     : connectionInfo.user,
     password : connectionInfo.password,
-    database : 'bus',
+    database : connectionInfo.database,
     endConnectionOnClose: true
 });
 
-let QueryTask = (query) =>{
+const queryContents=(query,returnType)=>{query,returnType};
+
+const PreparedStatementParamMaker = (...arg)=>[...arg]
+
+const queryList={
+    'RequestTime':queryContents(`select date_format(departDate,'%Y-%m-%d') from buslist GROUP BY departDate ORDER BY departDate ASC;`,
+    `date_format(departDate,'%Y-%m-%d')`),
+
+    'RequestBusList':queryContents(`select * from buslist where date_format(departDate,'%Y-%m-%d')=date_format( ? ,'%Y-%m-%d');`,
+    `date_format(departDate,'%Y-%m-%d')`),
+
+    'RequestEmptySeat':queryContents(`SELECT busSeat FROM reservation WHERE busNumber = ?\
+    AND date_format(bus_date,'%Y-%m-%d') = date_format(?,'%Y-%m-%d');`,'busSeat')
+};
+
+let QueryTask = (query,prepared) =>{
     return new Promise((resolve,reject)=>{
-        connection.query(query,(error,result,field)=>{
+        connection.query(query,prepared,(error,result,field)=>{
+
+            let resultArr = [];
+            let resultAttr = [];
+
+            for(let i=0;i<field.length;++i){
+                resultAttr.push(field[i]['name']);
+            }
+
+            for(let i=0;i<result.length;++i){
+                let json = {};
+                for(let j =0;j<field.length;++j){
+                    json[field[j]['name']] = result[i][field[j]['name']];
+                }
+
+                resultArr.push(json);
+            }   
+
             if(error){
                 console.log(error);
                 reject('error');
             }else{
+                //resolve({attr:resultAttr,result:resultArr});
                 resolve(result);
             }
         });
     })
 }
 
-let GetSqlResult = async (query)=>{
-    return await QueryTask(query);
+let GetSqlResult = async (query,prepared )=>{
+    //console.log(query);
+    return await QueryTask(query,prepared);
 }
 //async는 리턴을 하면 항상 promise를 리턴한다
 //위에서 넘어온 result를 그냥 출력하려 하면 안된다
@@ -41,7 +76,10 @@ let TransactionTask = (query)=>{
                 throw error;
               })}
             });
+
+        connection.commit();
     });
 };
 
 exports.GetSqlResult = GetSqlResult;
+exports.queryList=queryList;
