@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 let GetSchedule = ()=>{
   $('#daylist').empty();
   $('#timelist').empty();
@@ -9,40 +8,6 @@ let GetSchedule = ()=>{
       location.href = '/error.html'
     }
 
-=======
-
-let setTimeTableEvent=()=>{
-  $("#daylist li").click(
-    (event)=>{
-      $(event.target).parent().siblings().find('.dayselect').removeClass("dayselect");
-      $(event.target).addClass("dayselect");
-
-      $.post('common/RequestBusList',{request:event.target.innerHTML},(result)=>{
-        let results = Array.from(result.buses);
-        let listParent = $('#timelist')[0];
-        $('#timelist').empty();        
-        for(let i=0;i<results.length;++i){
-          let newli = document.createElement('li');
-          let newP = document.createElement('p');
-          newP.innerHTML= "번호: " +results[i].busNum + " 남은자리: "+ results[i].leftSeat ;
-          newP.setAttribute('class','');  
-          newli.append(newP);
-          listParent.append(newli);
-        }
-
-        $("#timelist li").click(
-          function(){
-            $(this).addClass("timeselect");
-            $(this).siblings().removeClass("timeselect");
-          }
-        );
-      });
-    });
-}
-
-let getTimeSchedule =()=>{
-  $.post('common/RequestTime','',(result)=>{
->>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
     let arr = Array.from(result.times);
     let listParent = $('#daylist')[0];
     for(let i=0;i<arr.length;++i){
@@ -53,7 +18,6 @@ let getTimeSchedule =()=>{
       newli.append(newP);
       listParent.append(newli); 
     }
-<<<<<<< HEAD
 
     //GetTime
     $("#daylist li").click(
@@ -156,31 +120,6 @@ let sendSelected = ()=>{
   })
 }
 
-=======
-  
-    setTimeTableEvent();
-  });
-}
-
-let getEmptySeats = ()=>{
-  let selectDate = $("#timelist li");
-  let busNum = '1001';
-  let sendParam = {selectDate,busNum};
-  $.post('common/RequestEmptySeat',sendParam,(result)=>{
-    
-    let arr = Array.from(result.used);
-    console.log(arr);
-    $("#seatlist td").click(
-      ()=>{
-        $(this).toggleClass("seatselect");
-      }
-    
-    );
-  })
-}
-
-
->>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
 $(document).ready(()=>{
     for (var i=1; i <= $('.slider__slide').length; i++){
       $('.slider__indicators').append('<div class="slider__indicator" data-slide="'+i+'"></div>')
@@ -193,7 +132,6 @@ $(document).ready(()=>{
         $('.slider__slide').removeClass('slider__slide--active');
         $('.slider__slide[data-slide='+number+']').addClass('slider__slide--active');
 
-<<<<<<< HEAD
         console.log(number);
         if(number === 1){
           GetSchedule();
@@ -201,13 +139,6 @@ $(document).ready(()=>{
           GetEmptySeats();
         }else if(number === 3){
           sendSelected();
-=======
-        if(number === 1){
-          getTimeSchedule();
-        }else if(number === 2){
-          getEmptySeats();
-          console.log('');
->>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
         }
     }
     
@@ -222,7 +153,6 @@ $(document).ready(()=>{
         goToSlide(currentSlide);
     };
 
-<<<<<<< HEAD
     let clickprev = ()=>{
       var currentSlide = Number($('.slider__slide--active').data('slide'));
       currentSlide=1;
@@ -230,21 +160,12 @@ $(document).ready(()=>{
       goToSlide(currentSlide);
   };
 
-=======
->>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
     $('#go-to-next1').click(click);
     $('#go-to-next2').click(click);
     $('#go-to-next3').click(click);
 
-<<<<<<< HEAD
     $('#go-to-prev1').click(clickprev);
     $('#go-to-prev2').click(clickprev);
     $('#go-to-prev3').click(clickprev);
     goToSlide(1);
 });
-=======
-    goToSlide(1);
-
-    
-})
->>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
