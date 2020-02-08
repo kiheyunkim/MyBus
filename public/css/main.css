@@ -29,7 +29,31 @@ h2{
   font-weight: normal;
   line-height: 100%;
   text-align: center;
+  color: #fff;
 }
+/* 상단 버튼 관련------------------------------------------------------------------------------------ */
+header{
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+header .btns_wrap{
+    position: relative;
+}
+#btns{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+#btns button{
+    font-size: 12px;
+}
+#btns #search{
+
+}
+
+
 /* 슬라이드 관련------------------------------------------------------------------------------------ */
 .slider {
     position: relative;
@@ -244,7 +268,7 @@ h2{
   font-weight: bold;
   margin-bottom: 0;
 }
-#daylist, #timelist, #seatlist, #seatsum{
+#daylist, #timelist, #seatlist, #seatsum, #warning{
     background-color: #fff;
     width: 90%;
     height: 90%;
@@ -273,7 +297,6 @@ h2{
 }
 .page1.left h2{
   background-color: #458eff;
-  color: #fff;
 }
 #daylist li p{
   color: #458eff;
@@ -291,112 +314,11 @@ h2{
      width: 50%;
     height: 90%;
     text-align: center;
-<<<<<<< HEAD
-=======
-    float: right;
-}
-.page1.right h2{
-  background-color: #8b6ddd;
-  color: #fff;  
-}
-#timelist li p{
-  color: #6546b9;  
-}
-.timeselect{
-  background-color: #d8caff;
-}
-.timeselect p{
-  color: #4524bd !important;
-  font-weight: bold;
-}
-/* page2 왼쪽 페이지-------------------------------------- */
-.page2.left h2{
-  background-color: #df3b5a;
-  color: #fff;
-}
-.page2 #seatlist{
-    margin: 0 auto;
-    display: table;
-}
-#seatlist tbody{
-    display: table;
-    width: 60%;
-    height: 80%;
-    margin: 0 auto;
-    margin-top: 3%;
-}
-#seatlist tbody tr{
-  border: none;
-}
-#seatlist tbody tr th{
-  border-top: 2px solid #fff;
-}
-#seatlist tbody tr td{   
-  cursor: pointer;
-    border: 2px solid #e6e6e6;
-    font-size: 14px;
-    color: #777;
-    box-sizing: border-box;
-    position: relative;
-}
-.seatselect{
-    color: #8c2828 !important;
-    font-weight: bold;
-}
-.seatselect::after{
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(255, 75, 75, 0.2);
-    border: 2px solid #df3b5a !important;
-}
-/* page2 오른쪽 페이지-------------------------------------- */
-.page2.right h2{
-  background-color: #df613b;
-  color: #fff;
-}
-#seatsum{
-    margin: 0 auto;
-}
-#selectlist{
-    height: 80%;
-    border-bottom: 1px solid #e6e6e6;
-}
-#selectlist li{
-    cursor: auto;
-}
-#selectlist li p{
-    text-align: left;
-    padding: 26px 46px;
-}
-#price{
-    height: 20%;
-    padding: 26px 46px;
-    font-weight: bold;
-    font-size: 20px;
-}
-#price p{
-    float: left;
-    color: #777;
-}
-#price span{
-    float: left;
-    width: 60%;
-    height: 80%;
-    margin-left: 10%;
-    font-weight: bold;
-}
-#price i{
->>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
     float: right;
     font-style: initial; 
 }
 .page1.right h2{
-  background-color: #8b6ddd;
-  color: #fff;  
+  background-color: #8b6ddd;  
 }
 #timelist li p{
   color: #6546b9;  
@@ -411,7 +333,6 @@ h2{
 /* page2 왼쪽 페이지-------------------------------------- */
 .page2.left h2{
   background-color: #df3b5a;
-  color: #fff;
 }
 .page2 #seatlist{
     margin: 0 auto;
@@ -462,7 +383,6 @@ h2{
 /* page2 오른쪽 페이지-------------------------------------- */
 .page2.right h2{
   background-color: #df613b;
-  color: #fff;
 }
 #seatsum{
     margin: 0 auto;
@@ -498,6 +418,41 @@ h2{
 #price i{
     float: right;
     font-style: initial; 
+}
+/* page3 왼쪽 페이지-------------------------------------- */
+.page3.left h2{
+  background-color: #50b324;
+}
+/* page3 오른쪽 페이지-------------------------------------- */
+#warning{
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    margin: 0 auto;
+    padding: 5%;
+    text-align: center;
+}
+.page3.right h2{
+  background-color: #d9d9d9;
+  color: #4a4a4a;
+}
+#warning ul{
+   text-align: left;
+   padding: 5%;
+}
+#warning ul li{
+    color: #6b6b6b;
+    line-height: 3;
+    list-style: inside;
+}
+#warning input{
+    margin: 15px;
+    display: inline;
+    
+    transform: scale(1.3);
+}
+#warning p{
+    font-size: 20px;
+    display: inline;
+    color: #3d3d3d;
 }
 
 /* 하단 버튼 관련------------------------------------------------------------------------------------ */

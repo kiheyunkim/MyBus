@@ -1,4 +1,4 @@
-CREATE TABLE Reservation(
+CREATE TABLE reservation(
     reserv_no INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL,
     busNumber INT NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE Reservation(
     reserv_date DATETIME DEFAULT NOW()
 );
 
-CREATE TABLE BusList(
+CREATE TABLE busList(
     departDate DATETIME,
     busNumber INT,
     seatUsed INT
@@ -19,13 +19,9 @@ CREATE TABLE prePurchase(
     reserv_date DATETIME
 );
 
-INSERT INTO BusList VALUES ( DATE('2020-02-20'), 1001, 0);
+INSERT INTO BusList VALUES ( DATE('2020-02-20'), 1001, 40);
 
-<<<<<<< HEAD
 INSERT INTO Reservation (email, busSeat, busNumber, bus_date) VALUES ( '123@123.com', 1, 1001, DATE('20-02-20'));
-=======
-INSERT INTO Reservation (email, busSeat, busNumber) VALUES ( '123@123.com', 1, 1001);
->>>>>>> 1d51751f0c033e7cc99af4663e0a81c962830743
 
 SELECT * FROM Reservation WHERE email = '123@123.com';
 

@@ -24,8 +24,4 @@ LoginRouter.get('/callback',
     response.redirect("/main.html");
 });
 
-
-
-
-
 module.exports = LoginRouter;
