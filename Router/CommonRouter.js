@@ -61,7 +61,7 @@ CommonRouter.post('/RequestEmptySeat',(request,response)=>{
     }
     //예약 순간에 다른 
     mysql.GetSqlResult(`
-    SELECT  busSeat 
+    SELECT DISTINCT busSeat 
     FROM ((SELECT busNumber, busSeat 
            FROM reservation 
            WHERE date_format(bus_date,'%Y-%m-%d') = date_format(?,'%Y-%m-%d'))
@@ -100,37 +100,34 @@ CommonRouter.post('/PrePurchase',async (request,response)=>{
     
     let requestSize = prePurchaseList.length;
     let successList = [];
-    let failedList = [];
     for(let i=0;i<requestSize;++i){
         try {
             await mysql.GetSqlResult(`INSERT INTO prepurchase(busSeat,busNumber,bus_date, email)   
             VALUES (?,?,?,?);`
             ,[prePurchaseList[i],request.session.selectBusNum,
             request.session.selectedDate,request.session.passport.user[0].value]);
-
             successList.push(prePurchaseList[i]);
         } catch (error) {   
             if(error.code === 'ER_DUP_ENTRY'){
-                console.log('hi');
-                //다른놈이 먹었지만 다시 획득할 수 있어 졌을때
-                console.log(request.session.passport.user[0].value, request.session.selectBusNum,
-                    request.session.selectBusNum, request.session.selectedDate);
+                //다른놈이 먹었지만 시간이 지나 다시 획득할 수 있어 졌을때
                 await mysql.GetSqlResult(`UPDATE prepurchase SET email = ?, reserv_date=NOW() WHERE busSeat  = ? AND
                 busNumber = ? AND bus_date = DATE(?)`,[request.session.passport.user[0].value, prePurchaseList[i],
-                request.session.selectBusNum, request.session.selectedDate]);          
+                request.session.selectBusNum, request.session.selectedDate]);  
+                successList.push(prePurchaseList[i]);        
             }
             else{
                 mysql.DoRollBack();
                 console.log(error); //Real Error
-                failedList.push(prePurchaseList[i]);
+                //오류 발생 통보
+                return;
             }
         }
     }
 
     await mysql.GetSqlResult('COMMIT');
 
-    if(failedList.length === requestSize){
-        response.json({state : 'failed'});  //모두 실패
+    if(successList.length === 0){
+        response.json({state : 'failed'});                          //모두 실패
     }else if(successList.length === requestSize){
         response.json({message: successList, state : 'success'});   //모두 성공
     }else{
@@ -140,21 +137,33 @@ CommonRouter.post('/PrePurchase',async (request,response)=>{
 
 //10분 경과 안된 것을 가져와서 reservation Table로 이동시킨다.
 //reserv_no 뺴고 전부 그대로 옮겨와준다. 안되면 현재 시간으로 표시한다.
-CommonRouter.post('/RequestReserv',(request,response)=>{
-    mysql.GetSqlResult(`SELECT busNumber, busSeat, reserv_date \
-    FROM Reservation WHERE email = ${request.session.passport.user[0].value}`).then(
-        (outfulfilled)=>{
-            console.log(outfulfilled);
-        }
-    )
+//다 옮긴 다음 prepurchase에서 해당 내용을 지워버린다.
+//하지만 이와같은 경우 동시접속에 대한 문제가 생긴다.
+//#######  동시 접속을 금지시킨다. <---- 중요 !!! 처리해야함  ######
+CommonRouter.post('/RequestReserv',async (request, response)=>{
+    let identifier = request.session.passport.user[0].value;
+
+    try {
+        await mysql.GetSqlResult(`
+            INSERT INTO reservation(email,busNumber,busSeat,bus_date) 
+                SELECT email,busNumber,busSeat,bus_date 
+                FROM prepurchase 
+                WHERE email = ?;
+        `,[identifier]);
+        
+        await mysql.GetSqlResult(`DELETE * FROM prepurchase WHERE email = ?;`,[identifier]);
+    } catch (error) {
+        response.json({message:'error'});
+        return;
+    }
+
+    response.json({message:'ok'});
 });
 
 //오른쪽 상단 메뉴
+//새로 창을 띄운다음에 요청하도록 클라에서 처리.
 CommonRouter.post('/checkReservation', (request, response)=>{
-    request.logOut();
-    request.session.destroy((err)=>{
-        response.redirect(302,'/');
-    })
+    mysql.GetSqlResult(`SELECT * FROM reservation WHERE email = `)
 });
 
 CommonRouter.get('/logout', (request, response)=>{

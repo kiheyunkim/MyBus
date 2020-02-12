@@ -71,6 +71,14 @@ WHERE A.busNumber = 1001
 ORDER BY A.busSeat;
 
 
-START TRANSACTION;
+START TRANSACTION;  --트랜잭션 시작
 
-COMMIT;
+COMMIT; --트랜잭션 끝남
+
+INSERT INTO reservation(email,busNumber,busSeat,bus_date) 
+       SELECT email,busNumber,busSeat,bus_date 
+       FROM prepurchase 
+       WHERE email = ?;
+
+DELETE * FROM prepurchase WHERE email = ?;
+
