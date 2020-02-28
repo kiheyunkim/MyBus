@@ -1,0 +1,31 @@
+@media screen and (max-width: 768px) {
+	section.left{
+		display: none;
+	}
+	section.right{
+		width: 100%;
+		float: none;
+	}
+	.login h1{
+		font-size: 72px;
+	}
+	.login h2{
+		display: initial;
+		position: absolute;
+		top: calc(50% - 180px);
+		left: calc(50% - 60px);
+		width: 120px;
+		font-size: 20px;
+		line-height: 1.5;
+		letter-spacing: 2px;
+	}
+	.login h2::before{
+		content: "";
+		position: absolute;
+		width: 1px;
+		height: 480px;
+		top: -480px;
+		left: 50%;
+		background-color: #000;
+	}
+}

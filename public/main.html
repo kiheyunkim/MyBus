@@ -1,241 +1,285 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/main.css"/>
-    <script src="./js/main.js"></script>
-    <title>ticketing</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY BUS</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700|Squada+One&display=swap" rel="stylesheet"> 
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/main.css"/>
+  <link rel="stylesheet" type="text/css" href="css/mainmedia.css" media="(max-width: 767px)">
+
+  <script src="js/main.js"></script>   
+  <script>
+    $(document).ready(
+      function(){
+        // 출발 날짜 선택 시 나오는 목록
+        $(".dayselect").click(
+          function(){
+            $("#daylist").toggleClass("daytimeshow");
+          }
+        );
+
+        // 출발 시간 선택 시 나오는 시간 입력창
+        $(".timeselect").click(
+          function(){
+            $("#timelist").toggleClass("daytimeshow");
+          }
+        );
+
+        // 페이지 넘김
+        $("#go-to-next1").click(
+          function(){
+            $("#page1").addClass("mobilehide");
+            $("#page1 h3").removeClass("now");
+            $("#page2 h3").addClass("now");
+            $("#page2").removeClass("hide");
+            $("#page2").addClass("show");
+          }
+        );
+        $("#go-to-next2").click(
+          function(){
+            $("#page2").addClass("mobilehide");
+            $("#page2 h3").removeClass("now");
+            $("#page3 h3").addClass("now");
+            $("#page3").removeClass("hide");
+            $("#page3").addClass("show");
+          }
+        );
+
+        $("#go-to-prev3").click(
+          function(){
+            $("#page2").removeClass("mobilehide");
+            $("#page2 h3").addClass("now");
+            $("#page3 h3").removeClass("now");
+            $("#page3").addClass("hide");
+            $("#page3").removeClass("show");
+          }
+        );
+        $("#go-to-prev2").click(
+          function(){
+            $("#page1").removeClass("mobilehide");
+            $("#page1 h3").addClass("now");
+            $("#page2 h3").removeClass("now");
+            $("#page2").addClass("hide");
+            $("#page2").removeClass("show");
+          }
+        );
+
+      }
+    );
+  </script>
 </head>
 <body>
+  <!-- 상단 영역--------------------------------------------------------------- -->
   <header>
-    <div class="btns_wrap">
-      <div id="btns">
-        <button id="search" type="button" class="btn btn-primary">조회하기</button>
-        <button id="logout" type="button" class="btn btn-primary" onclick="location.href='common/logout'">로그아웃</button>
-      </div>
+    <h1 class="logo">My Bus</h1>
+    <div class="headerBtns">
+      <button id="search" type="button">조회</button>
+      <button id="logout" type="button" onclick="location.href='common/logout'">로그아웃</button>
     </div>
   </header>
-  <div class="slider">
-    <!-- 첫 번째 페이지------------------------------------------------------------------ -->
-    <div class="slider__slide" data-slide="1">
-      <div class="slider__wrap"><!-- 슬라이더---------- -->
-        <div class="slider__back"></div>
-      </div> 
-      <div class="slider__inner"><!-- 첫 번째 페이지 내용---------- -->
-        <div id="select_form"><!-- 왼쪽 페이지 -->
-          <div class="page1 left">
-            <h2>출발 날짜</h2>
-            <ul id="daylist"><!--
-              <li class="day1"><p>test</p></li>
-              <li class="day2"><p></p></li>
-              <li class="day3"><p></p></li>
-              <li class="day4"><p></p></li>
-              <li class="day5"><p></p></li>
-              <li class="day6"><p></p></li>
-              <li class="day7"><p></p></li>-->
-            </ul>
-          </div>
-        </div><!--
-     --><div id="info_form"><!-- 오른쪽 페이지 -->
-          <div class="page1 right">
-            <h2>출발 시간</h2>
-            <ul id="timelist"><!--
-              <li class="time1"><p>test</p></li>
-              <li class="time2"><p></p></li>
-              <li class="time3"><p></p></li>
-              <li class="time4"><p></p></li>
-              <li class="time5"><p></p></li>
-              <li class="time6"><p></p></li>
-              <li class="time7"><p></p></li>
-              <li class="time8"><p></p></li>
-              <li class="time9"><p></p></li>
-              <li class="time10"><p></p></li>
-              <li class="time11"><p></p></li>
-              <li class="time12"><p></p></li>
-              <li class="time13"><p></p></li>
-              <li class="time14"><p></p></li>
-              <li class="time15"><p></p></li>
-              <li class="time16"><p></p></li>
-              <li class="time17"><p></p></li>
-              <li class="time18"><p></p></li>
-              <li class="time19"><p></p></li>
-              <li class="time20"><p></p></li>-->
-            </ul>
-          </div>
-        </div><!--
-     --><div id="bttnArea"><!-- 첫 번째 페이지 이동 버튼---------- -->
-          <div class="prev_buttn">
-            <!--<button id ='go-to-prev1' type="button" class="btn btn-primary">이전으로</button>-->
-          </div>   
-          <div class="next_button">
-            <button id ='go-to-next1' type="button" class="btn btn-primary">다음으로</button>
-          </div> 
+  <!-- 컨텐츠 영역--------------------------------------------------------------- -->
+  <section id="container" class="row">
+    <!-- 첫 번째 단계----------------------------------------------- -->
+    <article id="page1" class="col-md-4">
+      <h3 class="now">출발 선택</h3>
+      <div class="content">
+        <!-- 출발 날짜 선택 -->
+        <div class="day">
+          <h4>출발 날짜</h4>
+          <input type="text" class="dayselect" readonly="true">
+          <ul id="daylist"></ul>
+        </div>
+        <!-- 출발 시간 선택 -->
+        <div class="time">
+          <h4>출발 시간</h4>
+          <input type="text" class="timeselect" readonly="true">
+          <ul id="timelist">
+            <li id="hour">
+              <ul></ul>
+            </li>
+            <li id="minute">
+              <ul></ul>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-
-    <!-- 두 번째 페이지------------------------------------------------------------------ -->
-    <div class="slider__slide" data-slide="2">
-      <div class="slider__wrap"><!-- 슬라이더---------- -->
-        <div class="slider__back"></div>
+      <!-- 이동 버튼 -->
+      <div id="bttnArea">
+        <button id ='go-to-next1' type="button" class="next_button">다음으로</button>
       </div>
-      <div class="slider__inner"><!-- 두 번째 페이지 내용---------- -->
-        <div id="select_form"><!-- 왼쪽 페이지 -->
-          <div class="page2 left">
-            <h2>좌석 선택</h2>
-            <table id="seatlist">
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>2</td>
-                  <th></th>
-                  <td>3</td>
-                  <td>4</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>6</td>
-                  <th></th>
-                  <td>7</td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>10</td>
-                  <th></th>
-                  <td>11</td>
-                  <td>12</td>
-                </tr>
-                <tr>
-                  <td>13</td>
-                  <td>14</td>
-                  <th></th>
-                  <td>15</td>
-                  <td>16</td>
-                </tr>
-                <tr>
-                  <td>17</td>
-                  <td>18</td>
-                  <th></th>
-                  <td>19</td>
-                  <td>20</td>
-                </tr>
-                <tr>
-                  <td>21</td>
-                  <td>22</td>
-                  <th></th>
-                  <td>23</td>
-                  <td>24</td>
-                </tr>
-                <tr>
-                  <td>25</td>
-                  <td>26</td>
-                  <th></th>
-                  <td>27</td>
-                  <td>28</td>
-                </tr>
-                <tr>
-                  <td>29</td>
-                  <td>30</td>
-                  <th></th>
-                  <td>31</td>
-                  <td>32</td>
-                </tr>
-                <tr>
-                  <td>33</td>
-                  <td>34</td>
-                  <th></th>
-                  <td>35</td>
-                  <td>36</td>
-                </tr>
-                <tr>
-                  <td>37</td>
-                  <td>38</td>
-                  <td>39</td>
-                  <td>40</td>
-                  <td>41</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div><!--
-     --><div id="info_form"><!-- 오른쪽 페이지 -->
-          <div class="page2 right">
-            <h2>선택 확인</h2>
-            <div id="seatsum">
-              <ul id="selectlist"><!--
-                <li><p>test</p></li>-->
-              </ul>
-              <div id="price">
-                <p>총 금액 : </p>
-                <span class="sum"></span>
-                <i>원</i>
-              </div>
-            </div>
-          </div>
-        </div><!--
-     --><div id="bttnArea"><!-- 두 번째 페이지 이동 버튼---------- -->
-          <div class="prev_buttn">
-            <button id ='go-to-prev2' type="button" class="btn btn-primary">이전으로</button>
-          </div>   
-          <div class="next_button">
-            <button id ='go-to-next2' type="button" class="btn btn-primary">다음으로</button>
-          </div> 
+    </article>
+    <!-- 두 번째 단계----------------------------------------------- -->
+    <article id="page2" class="col-md-4 hide">
+      <h3>좌석 선택</h3>
+      <div class="content row">
+        <!-- 인원 선택 -->
+        <ul id="peopleselect" class="col-md-6">
+          <li>
+            <label>성인</label>
+            <input type="text">
+          </li>
+          <li>
+            <label>중고생</label>
+            <input type="text">
+          </li>
+          <li>
+            <label>아동</label>
+            <input type="text">
+          </li>
+        </ul>
+        <!-- 자리 선택 -->
+        <table id="seatlist" class="col-md-6">
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <th></th>
+              <td>3</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>6</td>
+              <th></th>
+              <td>7</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>10</td>
+              <th></th>
+              <td>11</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>14</td>
+              <th></th>
+              <td>15</td>
+              <td>16</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>18</td>
+              <th></th>
+              <td>19</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>22</td>
+              <th></th>
+              <td>23</td>
+              <td>24</td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>26</td>
+              <th></th>
+              <td>27</td>
+              <td>28</td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>30</td>
+              <th></th>
+              <td>31</td>
+              <td>32</td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td>34</td>
+              <th></th>
+              <td>35</td>
+              <td>36</td>
+            </tr>
+            <tr>
+              <td>37</td>
+              <td>38</td>
+              <td>39</td>
+              <td>40</td>
+              <td>41</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- 이동 버튼 -->
+      <div id="bttnArea">
+        <button id ='go-to-prev2' type="button" class="prev_buttn">이전</button>
+        <button id ='go-to-next2' type="button" class="next_button">다음</button>
+      </div>
+    </article>
+    <!-- 세 번째 단계----------------------------------------------- -->
+    <article id="page3" class="col-md-4 hide">
+      <h3>선택 확인 및 구매</h3>
+      <div class="content">
+        <!-- 날짜, 시간, 인원 체크 표 -->
+        <table id="checking">
+          <tbody>
+            <tr>
+              <th>출발 날짜</th>
+              <td class="dayselect"></td>
+            </tr>
+            <tr>
+              <th>출발 시간</th>
+              <td class="timeselect"></td>
+            </tr>
+            <tr>
+              <th>인원</th>
+              <td class="peoplesum"></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 선택 좌석 표 -->
+        <table id="seat">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>좌석</th>
+              <th>가격</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="number">1</td>
+              <td class="seatnum">00번 (안쪽)</td>
+              <td class="seatprice">00,000 원</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 결제 금액 총합-->
+        <table id="price">
+          <tbody>
+            <tr>
+              <th>결제 금액</th>
+              <td class="pricesum"></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 결제 주의 사항 -->
+        <div id="warning">
+          <p>당일 출발 차량의 출발시각 20분 이전까지 예매가 가능합니다.</p>
+          <p>중고생은 승차 시에 학생증(청소년증)을 지참하셔야 합니다.</p>
+          <p>예매(또는 취소)단계에서 회선장애나 기타 통신장애 발생 시 예매(취소)여부를 조회를 통해 반드시 직접 확인하셔야 합니다. 확인하시지 않으신 경우에 부도위약금이 청구될 수 있으니 유의하시기 바랍니다.</p>
+          <p>승객들의 원활한 승차, 수송을 위하여 10분전까지 발권하여 주시기 바랍니다.</p>
+          <input type="checkbox">
+          <p>위 주의사항을 확인했으며, 결제를 진행합니다.</p>
         </div>
       </div>
-    </div>
-
-    <!-- 세 번째 페이지------------------------------------------------------------------ -->
-    <div class="slider__slide" data-slide="3">
-      <div class="slider__wrap"><!-- 슬라이더---------- -->
-        <div class="slider__back"></div>
+      <!-- 이동 버튼 -->
+      <div id="bttnArea">
+        <button id ='go-to-prev3' type="button" class="prev_buttn">이전</button>
+        <button id ='go-to-pay' type="button" class="next_button">구매</button>
       </div>
-      <div class="slider__inner"><!-- 세 번째 페이지 내용---------- -->
-        <div id="select_form"><!-- 왼쪽 페이지 -->
-          <div class="page3 left">
-            <h2>최종 구매</h2>
-            <div id="seatsum">
-              <ul id="selectlist"><!--
-                <li><p>test</p></li>-->
-              </ul>
-              <div id="price">
-                <p>총 금액 : </p>
-                <span class="sum"></span>
-                <i>원</i>
-              </div>
-            </div>
-          </div>
-        </div><!--
-     --><div id="info_form"><!-- 오른쪽 페이지 -->
-          <div class="page3 right">
-            <h2>주의사항</h2>
-            <div id="warning">
-              <ul>
-                <li>좌석 구매 후 철회 시, 탑승 이전 남은 기간에 따라 수수료를 달리합니다.</li>
-                <li>당일 좌석 구매인 경우, 탑승 한 시간 전까지만 환불이 가능합니다.</li>
-                <li>좌석 구매 후 탑승하지 않을 시, 환불은 불가한 점에 유의하시길 바랍니다.</li>
-                <li>좌석 임의 변경은 불가하며, 교환 및 양도는 불가합니다.</li>
-              </ul>
-              <input type="checkbox" name="chk_info" value="agree"><p>위 구매조건 확인 및 결제진행에 동의합니다.</p>
-            </div>
-          </div>
-        </div><!--
-     --><div id="bttnArea"><!-- 세 번째 페이지 이동 버튼---------- -->
-          <div class="prev_buttn">
-            <button id ='go-to-prev3' type="button" class="btn btn-primary">이전으로</button>
-          </div>   
-          <div class="next_button">
-            <button id ='go-to-next3' type="button" class="btn btn-primary">결제하기</button>
-          </div> 
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="slider__indicators"></div>
+    </article>
+  </section>
 </body>
 </html>

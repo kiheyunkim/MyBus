@@ -1,0 +1,97 @@
+@media screen and (max-width: 1024px) {
+	body{
+		overflow: hidden;
+	}
+	#daylist, #ticket{
+		max-width: 100%;
+		flex: none;
+		padding-top: 0;
+		padding-left: 20px;
+		overflow: hidden;
+	}
+	#daylist{
+		padding-right: 0;
+		overflow-x: scroll;
+		height: 112px;
+		white-space: nowrap;
+	}
+	.day{
+		display: inline;
+	}
+	.day li{
+		width: 140px;
+		padding: 30px 15px 20px 15px;
+		border-radius: 0 0 30px 30px;
+		display: inline-block;
+		height: px;
+		text-align: center;
+		margin-right: 10px;
+		/*! animation: none !important; */
+	}
+	@keyframes dayani{
+		from{
+			margin-right: 0px !important;
+			height: 82px;
+		}
+		to{
+			margin-right: 0px !important;
+			height: 72px;
+		}
+	}
+	@keyframes selectani{
+		from{
+			margin-right: 0px !important;
+			height: 72px;
+		}
+		to{
+			margin-right: 0px !important;
+			height: 82px;
+		}
+	}
+	.today::before{
+		left: calc(50% - 25px);
+		top: 8px;
+	}
+	
+	#ticket{
+	 overflow-y: scroll;
+	 padding-top: 20px;
+	}
+	#ticket ul li{
+		margin: 0 auto;
+		margin-bottom: 20px;
+		height: 300px;
+		max-width: 640px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.content{
+		float: none;
+		width: 100%;
+		margin: 0 auto;
+	}
+	.explan{
+		float: none;
+		width: 100%;
+	}
+	.buscheck{
+		float: none;
+		width: calc(100% - 40px);
+		border-right: none;
+		border-bottom: 1px solid #aaa;
+		padding: 0;
+		padding-bottom: 20px;
+		margin: 0 20px;
+	}
+	.paycheck{
+		float: none;
+		padding: 20px;
+		width: 100%;
+	}
+	.code{
+		
+	float: none;
+	width: 100%;
+	}
+}
