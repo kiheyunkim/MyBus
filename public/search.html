@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY BUS</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,700|Squada+One&display=swap" rel="stylesheet"> 
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/search.css"/>
+  <link rel="stylesheet" type="text/css" href="css/searchmedia.css" media="(max-width: 1024px)">
+  <script>
+    $(document).ready(
+      function(){
+
+        // 날짜 목록 중 제일 위에 있는 날짜가 처음에 선택되도록
+        $(".day li").first().addClass("select");
+
+        // 다른 날짜 목록을 선택하면 다른 목록은 선택이 해제되도록
+        $(".day li").click(
+          function(){
+            $(this).addClass("select");
+            $(this).siblings().removeClass("select");
+          }
+        );
+
+        // 날짜 목록 중에서 "오늘" 날짜인 경우 추가하도록
+        //$("?").addClass("today");
+
+      }
+    );
+  </script>
+</head>
+<body>
+  <!-- 상단 영역--------------------------------------------------------------- -->
+  <header>
+    <h2>예약조회</h2>
+    <div class="headerBtns">
+      <button id="exit" type="button">나가기</button>
+    </div>
+  </header>
+  <!-- 컨텐츠 영역--------------------------------------------------------------- -->
+  <section id="container" class="row">
+    <!-- 첫 번째 단계----------------------------------------------- -->
+    <article id="daylist" class="col-md-4">
+      <ul class="day">
+        <li data-tab="list_1">test</li>
+        <li class="today">test</li>
+        <li>test</li>
+        <li>test</li>
+        <li>test</li>
+        <li>test</li>
+        <li>test</li>
+      </ul>
+    </article>
+    <!-- 두 번째 단계----------------------------------------------- -->
+    <article id="ticket" class="col-md-8">
+      <ul id="list_1">
+        <li class="list_1_1">
+          <div class="content left">
+            <div class="explan left">
+              <div class="route">
+                <span id="starting">출발지</span>
+                <span id="destination">도착지</span>
+              </div>
+              <div class="buscheck left">
+                <span class="starttime"><b id="timeselect">00:00</b> 출발</span>
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>버스번호</th>
+                      <td id="busnum">0000</td>
+                    </tr>
+                    <tr>
+                      <th>승차홈</th>
+                      <td id="ridenum">00</td>
+                    </tr>
+                    <tr>
+                      <th>좌석번호</th>
+                      <td id="seatnum">00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="paycheck right">
+                <span><b id="age">성인</b> 1명</span>
+                <span><b id="pay">00,000</b> 원</span>
+                <p><b id="paydate">0000.00.00 00:00</b> 결제</p>
+              </div>  
+            </div>
+            <div class="code right">
+              <div>
+                <span id="QRcode">QR</span>
+              </div>
+              <p>※모바일 앱을 통해<br>표를 보여주세요</p>
+            </div>
+          </div>
+          <div class="cancel right">
+            <button class="cancelbtn" data-toggle="modal" data-target=".bs-example-modal-sm">예약취소</button>   
+          </div>
+        </li>
+      </ul>
+    </article>
+    <!-- 예약 취소 모달----------------------------------------------- -->
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>예약을 취소하겠습니까?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="close" data-dismiss="modal">닫기</button>
+            <button type="button" class="ok">확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

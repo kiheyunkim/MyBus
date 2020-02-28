@@ -1,39 +1,92 @@
+/* 공통 영역 */
 body{
     max-width: 1920px;
-    display: table;
-    position: relative;
     margin: 0 auto;
     padding: 0;
     overflow: hidden;
-    background-color: #fff;
-  }
-  #container{
-    display: table-cell;
-    vertical-align: middle;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+#container{
     width: 100vw;
     height: 100vh;
-  }
-  section{
-    width: 70%;
-    height: 600px;
-    z-index: 10;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 5px;
-  }
-  section .inner{
+    position: relative;
+}
+#container::before{
+    content: "";
+    background-image: url(../img/inbus.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
     height: 100%;
-    text-align: center;
-  }
-  
-  .inner .logo{
-      color: rgb(0, 255, 179);
-      font-size:130px;
-      font-family: 'Nanum Pen Script', cursive;
-  }
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: brightness(0.5);
+    z-index: -1;
+}
+section{
+    height: 100%;
+    margin: 0 auto;
+}
+section.left{
+    width: 70%;
+    float: left;
+}
+section.right{
+    width: 30%;
+    float: right;
+    background-color: #ccc;
+    display: table;
+}
 
-  .inner .loginbtn a{
+
+/* 왼쪽 영역 */
+.left .slogan{
+    height: 100%;
+    width: 100%;
+    padding: 48px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+.slogan h2{
+    position: absolute;
+    bottom: 48px;
+    right: 48px;
+    color: #fff;
+    text-align: right;
+    font-size: 4vw;
+    line-height: 1.5;
+    font-weight: bold;
+}
+/* .slogan h2::before{
+    content: "";
+    position: absolute;
+    width: 1000%;
+    height: 1px;
+    bottom: 10px;
+    right: 100%;
+    background-color: #fff;
+} */
+
+
+/* 오른쪽 영역 */
+.right .login{
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.login h1{
+    font-family: 'Squada One', cursive;
+    text-transform: uppercase;
+    font-size: 4vw;
+    margin-bottom: 20px;
+}
+.login h2{
+    display: none;
+}
+.login .loginbtn{
     display: inline-block;
     width: 206px;
     height: 50px;
@@ -44,7 +97,8 @@ body{
     background-repeat: no-repeat;
     text-indent: -999%;
     overflow: hidden;
-  }
-  .inner .loginbtn a:active{
+}
+
+.login .loginbtn:active{
     background-image: url(../img/btn_google_signin_light_pressed_web@2x.png);
-  }
+}

@@ -1,0 +1,364 @@
+/* 공통------------------------------------------------------------------------------------ */
+html{
+  height: 100vh;
+  /*  파이어폭스 scrollber */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(85, 85, 85, 0.3) transparent;
+}
+
+/*  웹킷(크롬, 사파리) scrollber */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgba(101, 190, 230, 0.3);
+}
+body {
+  max-width: 1920px;
+  height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+*{/* 모든 마크업 태그 */
+  margin: 0; /* 바깥 여백 */
+  line-height: 100%;/* 줄 간격 */
+  padding: 0;/* 안쪽 여백 */
+}
+ul{/*마크업 테그(css버전)*/
+  list-style: none;/* 점표시 삭제 */
+  margin: 0 auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+p{
+  margin: 0 auto;
+}
+a{
+  text-decoration: none; /*  링크 버튼 밑에 밑줄 삭제 */
+  color: #000;
+}
+b{
+  font-weight: normal;
+}
+
+
+/* 상단 버튼 관련------------------------------------------------------------------------------------ */
+header{
+  width: 100%;
+  height: 50px;
+  position: relative;
+  text-align: center;
+  padding: 13px;
+  background-color: #aaa;
+}
+header h2{
+  font-size: 24px;
+  margin: 0 auto;
+  text-transform: uppercase;
+  line-height: 100%;
+  font-weight: bold;
+  color: #fff;
+}
+.headerBtns{
+  position: absolute;
+  right: 13px;
+  top: 13px;
+}
+.headerBtns button{
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  text-indent: -9999%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.headerBtns #exit{
+  background-image: url(../img/exit.png);
+}
+
+
+/* 컨텐츠 관련------------------------------------------------------------------------------------ */
+/* 페이지 공통-------------------------------------- */
+#container{
+  width: 100%;
+  margin: 0 auto;
+  height: calc(100% - 50px);
+}
+article{
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* 날짜 선택 목록-------------------------------------- */
+#daylist, #ticket{
+  padding: 20px;
+  padding-left: 0; 
+  box-sizing: border-box;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+.day{
+  padding-bottom: 10px;
+}
+.day li{
+  position: relative;
+  padding: 15px 20px;
+  padding-left: 0;
+  line-height: 1.5;
+  text-align: right;
+  font-size: 14px;
+  color: #999;
+  background-color: #e8e8e8;
+  margin-bottom: 10px;
+  margin-right: 50px;
+  border-radius: 0 30px 30px 0;
+  cursor: pointer;
+  animation: dayani 0.5s ease-in-out both;
+}
+@keyframes dayani{
+  from{
+    margin-right: 0px;
+  }
+  to{
+    margin-right: 50px;
+  }
+}
+.select{
+  background-color: #cdcdcd !important;
+  color: #555 !important;
+  font-weight: bold;
+  animation: selectani 0.5s ease-in-out both !important;
+}
+@keyframes selectani{
+  from{
+    margin-right: 50px;
+  }
+  to{
+    margin-right: 0px;
+  }
+}
+.today::before{
+  content: "오늘";
+  position: absolute;
+  left: 20px;
+  font-size: 12px;
+  font-weight: lighter;
+  padding: 2px 14px;
+  background-color: #fcac13;
+  color: #fff;
+  border-radius: 30px;
+}
+
+
+/* 예약 목록(티켓 목록)-------------------------------------- */
+#ticket ul li{
+  max-width: 1024px;
+  height: 212px;
+  margin-left: 20px;
+  box-sizing: border-box;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+
+/* 예약 내용 */
+.content{
+  width: 85%;
+  margin-bottom: 20px;
+  border: 1px solid #8b8b8b;
+}
+.explan{
+  width: 70%;
+}
+.code{
+  width: 30%;
+  height: 211px;
+  background-color: #aaaaaa;
+}
+/* 예약 내용 - 행선지 표시 */
+.route{
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+.route::before{
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #aaa;
+  z-index: -1;
+}
+.route::after{
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: calc(50% - 7px);
+  width: 14px;
+  height: 14px;
+  background-image: url(../img/right_arrow.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.route span{
+  display: inline-block;
+  position: absolute;
+  top: 11px;
+  height: 28px;
+  padding: 6px 16px;
+  font-size: 14px;
+  background-color: #777;
+  color: #fff;
+  border-radius: 20px;
+}
+.route #starting{
+  left: 20px;
+}
+.route #destination{
+  right: 20px;
+}
+/* 예약 내용 - 버스 정보 표시 */
+.buscheck{
+  width: 55%;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  border-right: 1px solid #aaa;
+}
+.starttime{
+  font-size: 14px;
+  font-weight: lighter;
+  line-height: 1.5;
+}
+.starttime #timeselect{
+  font-size: 36px;
+  font-weight: bold;
+}
+.buscheck table{
+  width: 100%;
+  height: 80px;
+  border: 1px solid #aaa;
+  text-align: center;
+  margin-top: 20px;
+}
+.buscheck table tr{
+  border-bottom: 1px solid #aaa;
+}
+.buscheck table th{
+  width: 84px;
+  font-weight: normal;
+  font-size: 12px;
+  border-right: 1px solid #aaa;
+  color: #555;
+  background-color: #ececec;
+}
+.buscheck table td{
+  color: #333;
+}
+/* 예약 내용 - 구매 인원 및 가격 표시 */
+.paycheck{
+  width: 45%;
+  padding: 58px 20px 0 20px;
+  box-sizing: border-box;
+}
+.paycheck span, .paycheck p{
+  display: block;
+  text-align: right;
+  line-height: 1.8;
+}
+.paycheck span:nth-of-type(1){
+  font-size: 14px;
+  font-weight: lighter;
+}
+.paycheck span:nth-of-type(2){
+  font-size: 14px;
+  font-weight: lighter;
+}
+.paycheck span:nth-of-type(2) b{
+  font-size: 30px;
+  font-weight: bold;
+}
+.paycheck p, .paycheck p b{
+  font-size: 12px;
+  font-weight: lighter;
+}
+/* 예약 내용 - QR코드 */
+.code{
+  padding: 20px;
+}
+.code>div{
+  height: 70%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+/* QR코드 추가하는 곳 */
+#QRcode{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-indent: -9999%;
+  overflow: hidden;
+}
+.code p{
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.5;
+  color: #fff;
+}
+/* 예약 취소 버튼 */
+.cancel{
+  width: 15%;
+  height: 100%;
+  position: relative;
+}
+.cancel .cancelbtn{
+  position: absolute;
+  bottom: 0;
+  border: none;
+  background-color: #ccc;
+  color: #fff;
+  font-size: 14px;
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+  border-radius: 0 20px 20px 0;
+  outline: none;
+}
+/* 예약 취소 모달 */
+.modal-content{
+  border: none;
+}
+.modal-body{
+  text-align: center;
+}
+.modal-footer{
+  border: none;
+}
+.modal-footer button{
+  font-size: 16px;
+  font-weight: normal;
+  width: 46%;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  text-shadow: none;
+}
+button.close{
+  float: left;
+  background-color: #aaa;
+  color: #000;
+}
+button.ok{
+  float: right;
+  background-color: #777;
+}

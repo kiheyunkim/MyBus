@@ -1,0 +1,33 @@
+*{/* 모든 마크업 태그 */
+  margin: 0; /* 바깥 여백 */
+  line-height: 100%;/* 줄 간격 */
+  padding: 0;/* 안쪽 여백 */
+}
+hr{
+  display: none;
+}
+ul{/*마크업 테그(css버전)*/
+  list-style: none;/* 점표시 삭제 */
+}
+a{
+  text-decoration: none; /*  링크 버튼 밑에 밑줄 삭제 */
+  color: #000;
+}
+b{
+  font-weight: normal;
+}
+em, address{
+  font-style: normal;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-size: 100%;
+  font-weight: normal;
+  line-height: 100%;
+}
+button{
+  border: none;
+}
+mark{
+  background-color: transparent;
+}
